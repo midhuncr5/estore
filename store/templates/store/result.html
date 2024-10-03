@@ -1,0 +1,49 @@
+{%extends 'store/base.html'%}
+
+
+
+{%block 'mainblock'%}
+
+
+
+
+      
+          {%for product in all_search_results %}
+          <div class="container mt-5" >
+            <div class="row" style="float: left; border: 10px; padding-left: 10px;">
+            
+              
+                  <!-- card  -->
+                  
+                  <div class="card" style="width: 18rem; margin-right: 35px;">
+                    <img src="{{product.product_pic.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.title}}</h5>
+                      <p class="card-text">{{product.price}}</p>
+                       <a href="{%url 'cart-add' product.id%}" class="btn btn-danger">add to cart</a>
+
+                      <a href="{%url 'product-detail' product.id%}" class="btn btn-primary">view more</a>
+                    </div>
+                  </div>
+            </div>
+          </div>
+          {% empty %}
+          <h2>No results found</h2>
+         
+          <!--  --end-- -->
+
+       
+          
+          
+      
+    
+          {%endfor%}
+          
+          
+        
+  
+
+{%endblock%}
+
+
+

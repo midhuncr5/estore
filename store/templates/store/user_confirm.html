@@ -1,0 +1,32 @@
+{%extends 'store/base.html'%}
+
+
+{%block 'mainblock'%}
+<center>
+<h1>please confirm details</h1>
+</center>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <form action="" method="post">
+                        {%csrf_token%}
+
+                        {{user}}
+                        
+                        <button type="submit" class="btn btn-success">confirm</button>
+                    </form>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+
+{%endblock%}

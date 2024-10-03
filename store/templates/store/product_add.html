@@ -1,0 +1,58 @@
+{%extends 'store/base.html'%}
+
+
+{%block 'mainblock'%}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <center>
+                        <!-- <table> -->
+                        <h1>product ADD</h1>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+
+                            {{product}}
+                            <!-- <tr>
+                                <td>product title :</td>
+                                <td>{{product.title}}</td>
+                            </tr>
+                            <tr>
+                                <td>description :</td>
+                                <td>{{product.description}}</td>
+            
+                            </tr>
+                            <tr>
+                                <td>brand</td>
+                                <td>
+                                    
+                    
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>product picture:</td>
+                                <td>{{product.product_pic}}</td>
+                            </tr> -->
+            
+            
+                        
+                        <!-- </table> -->
+                        </center>
+                        
+                        <button type="submit" class="btn btn-success form-control">ADD</button>
+                    </form>
+                </div>
+                <div class="col-2"></div>
+            </div>
+   
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{%endblock%}

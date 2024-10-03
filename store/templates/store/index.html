@@ -1,0 +1,46 @@
+{%extends 'store/base.html'%}
+
+
+
+{%block 'mainblock'%}
+
+
+
+      
+          {%for p in product%}
+          <div class="container mt-5" >
+            <div class="row" style="float: left; border: 10px; padding-left: 10px;">
+            
+              
+                  <!-- card  -->
+                  
+                  <div class="card" style="width: 18rem; margin-right: 35px;">
+                    <img src="{{p.product_pic.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{p.title}}</h5>
+                      <p class="card-text">{{p.price}}</p>
+                       <a href="{%url 'cart-add' p.id%}" class="btn btn-danger">add to cart</a>
+
+                      <a href="{%url 'product-detail' p.id%}" class="btn btn-primary">view more</a>
+                    </div>
+                  </div>
+            </div>
+          </div>
+         
+          <!--  --end-- -->
+
+       
+          
+          
+      
+    
+          {%endfor%}
+          
+          
+        
+  
+
+{%endblock%}
+
+
+

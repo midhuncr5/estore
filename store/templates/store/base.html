@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://kit.fontawesome.com/796e5da87d.js" crossorigin="anonymous"></script>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<style>
+  /* From Uiverse.io by vinodjangid07 */ 
+.bookmarkBtn {
+  width: 150px;
+  margin-left: 20px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.349);
+  background-color: rgb(12, 12, 12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.IconContainer {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgb(255, 136, 255), rgb(172, 70, 255));
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.3s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  
+  height: 100%;
+  margin-top: 10px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 1;
+  transition-duration: 0.3s;
+  font-size: 1.04em;
+}
+
+.bookmarkBtn:hover .IconContainer {
+  width: 90px;
+  transition-duration: 0.3s;
+}
+
+.bookmarkBtn:hover .text {
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: 0.3s;
+}
+
+.bookmarkBtn:active {
+  transform: scale(0.95);
+  transition-duration: 0.3s;
+}
+
+
+/* From Uiverse.io by abrahamcalsin */ 
+.buynow {
+  position: relative;
+  float: right;
+  text-decoration: none;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #183153;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+}
+
+.buynow:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #ffd401;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+}
+
+.buynow:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+.buynow span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+
+  padding: 18px 25px;
+  color: #fff;
+  font-size: 1.125em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+
+.buynow:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+#search{
+  width: 200px;
+
+  margin-right: 10px;
+  
+  float: left;
+
+  
+}
+#searchbtn{
+  float: right;
+  
+  margin-right: 450px; 
+  
+}
+#profileicon{
+  margin-right: 30px;
+}
+
+
+
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg " style="background-color:mediumslateblue">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style="font-weight: bolder;"><i class="fa-brands fa-shopware"></i> E-STORE</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'home'%}" style="font-weight: bold;color: black;" >Home</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'cart-summary'%}"  style="color:black;font-weight: bold;"><i class="fa-solid fa-cart-shopping">cart</i></a>
+              </li>
+
+
+            
+             
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'my-orders'%}" style="font-weight: bold;color: black;" >my orders</a>
+              </li>
+             
+             
+            </ul>
+            
+               
+            <form id="sfrm" class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}" >
+            <input id="search" class="form-control mr-sm-2" type="search" name="search" placeholder="search products">
+            <button id="searchbtn" class="btn btn btn-warning my-2 my-sm-0" type="submit"> Search </button>
+            </form>
+              <form class="d-flex">
+              <div id="profileicon">
+                <a href="{%url 'profile-edit' request.user.id%}"> <i style="color: black;" class="fa-regular fa-2x fa-user"></i> </a>
+              </div>
+
+              <a href="{%url 'sign-out'%}" class="btn btn-danger" type="submit"><i class="fa-solid fa-list"></i> logout</a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+{%block 'mainblock'%}
+
+
+
+{%endblock%}
+      
+
+
+
+    
+</body>
+</html>

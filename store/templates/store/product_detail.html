@@ -1,0 +1,83 @@
+{%extends 'store/base.html'%}
+
+{%block 'mainblock'%}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+
+            <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+                <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
+                    
+                  <img src="{{product.product_pic.url}}" alt="card-image" />
+                </div>
+                <div class="p-4">
+                  <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+                    {{product.title}}
+                  </h4>
+                  <p class="text-slate-600 leading-normal font-light">
+                    {{product.description}}
+                  </p>
+                </div>
+                <div class="p-4">
+                    <table>
+                        <tr>
+                            <td> <p style="font-weight: bold;">Brand :</p></td>
+                            <td><p style="font-weight: bolder;">{{product.brand_object}}</p></td>
+                        </tr>
+                        <tr>
+                            <td>memory/RAM  :</td>
+                            <td>{{product.memory_object}}</td>
+                        </tr>
+                        <tr>
+                            <td>colour :</td>
+                            <td>{{product.colour_object}}</td>
+                        </tr>
+                        <tr>
+                            <td>battery capacity :</td>
+                            <td>{{product.battery_capacity}}</td>
+                        </tr>
+                        <tr>
+                            <td><p style="font-weight: bold;">price :</p></td>
+                            <td><p style="font-weight: bolder;">{{product.price}}</p></td>
+
+                        </tr>
+                      </table>
+                <!-- </div> -->
+                      <!-- button -->
+                
+                      <a href="{%url 'cart-add' product.id%}" class="bookmarkBtn">
+                        <span class="IconContainer">
+                          <svg viewBox="0 0 384 512" height="0.9em" class="icon">
+                            <path
+                              d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"
+                            ></path>
+                          </svg>
+                        </span>
+                        <p class="text">Bookmark</p>
+                   </a>
+ 
+ 
+                   <a href="{%url 'user-detail' request.user.profile_detail.id%}" class="buynow">
+                       <span>Buy now</span>
+                   </a>
+            </div>          
+                      
+ 
+ 
+
+                    
+               
+            
+               
+                  
+              
+
+
+        </div>
+    </div>
+</div>
+
+
+
+{%endblock%}

@@ -1,0 +1,56 @@
+{%extends 'store/base.html'%}
+
+{%block 'mainblock'%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 border mt-5">
+            <table>
+            <center>
+                <form class="mt-5" action="" method="post" enctype="multipart/form-data">
+                    <div class="w-1/4 mx-auto">
+                        <img src="{{request.user.profile.profile_pic.url}}" alt="" style="width: 100px;height: 100px;">
+                
+                    </div>
+                    {%csrf_token%}
+
+                    {{request.user}}
+
+                    {{form}}
+
+                    <button type="submit" class="btn btn-success form-control">save</button>
+                
+                    
+                        <!-- <tr>
+                            <td>Bio :</td>
+                            <td>{{form.bio}}</td>
+                        </tr>
+                        <tr>
+                            <td>address :</td>
+                            <td>{{form.address}}</td>
+                        </tr>
+                        <tr>
+                            <td>phone</td>
+                            <td>{{form.phome}}</td>
+                        </tr>
+                        <tr>
+                            <td>profile picture :</td>
+                            <td>{{form.profile_pic}}</td>
+                        </tr>
+                    
+                 -->
+                </form>
+                 
+             </center>
+            </table>   
+            
+           
+        </div>
+    
+        <div class="col-3"></div>
+    </div>
+</div>
+
+
+{%endblock%}

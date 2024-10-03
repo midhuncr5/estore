@@ -1,0 +1,67 @@
+{%extends 'store/base.html'%}
+
+
+{%block 'mainblock'%}
+
+<div class="container mt-5">
+  <div class="row">
+    <center>
+    <h1>my orders</h1>
+    </center>
+    <div class="col-3"></div>
+    <div class="col-6">
+      
+      {%for o in orders%}
+      <!-- ==================== -->
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+
+          <div class="col-md-8">
+            <div class="card-body">
+              <table>
+                <tr>
+                  <td style="font-weight: bolder;">order id :</td>
+                  <td style="font-weight: bolder;">{{o.order_id}}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bolder;">order status :</td>
+                  <td style="font-weight: bolder;"> {{o.status}}</td>
+                </tr>
+              </table>
+              {%for p in o.product_object.all%}
+              <div class="col-md-4">
+                <img src="{{p.product_pic.url}}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <p class="card-text">{{p.title}}</p>
+              <p class="card-text">{{p.brand_object}}</p>
+              <p class="card-text">{{p.price}}</p>
+              {%endfor%}
+              
+              <table>
+                <tr>
+                  <td style="font-weight: bolder;">Total : </td>
+                  <td style="font-weight: bolder;">{{o.total}} Rs.</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- =================== -->
+       {%endfor%}
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
+
+
+
+
+
+
+{%endblock%}
