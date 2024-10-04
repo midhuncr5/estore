@@ -37,6 +37,7 @@ urlpatterns = [
     path("payment/verification/",views.PaymentVerificationView.as_view(),name="payment-verify"),
     path("order/summary",views.MyPurchaseView.as_view(),name="my-orders"),
     path('results/',views.SearchView.as_view(), name='search'),
+    path("product/<int:pk>/list/",views.ProductListView.as_view(),name="product-list")
     
     
     

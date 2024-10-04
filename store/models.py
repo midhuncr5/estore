@@ -29,7 +29,7 @@ class UserDetail(models.Model):
 
     address=models.TextField()
 
-    phone=models.CharField(max_length=100,unique=True,null=True)
+    phone=models.CharField(max_length=100,null=True)
 
     user_profile_object=models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile_detail")
 
@@ -133,23 +133,7 @@ class Product(models.Model):
 
 
 
-# class ProductVarients(models.Model):
-    
-#     Product_object=models.ForeignKey(Product,on_delete=models.CASCADE)
 
-#     owner=models.ForeignKey(User,on_delete=models.CASCADE,related_name="products_varients")
-
-#     memory_object=models.ManyToManyField(memory)
-
-#     colour_object=models.ManyToManyField(Colour)
-
-#     price=models.PositiveIntegerField()
-    
-#     created_date=models.DateTimeField(auto_now_add=True)
-
-#     updated_date=models.DateTimeField(auto_now=True)
-
-#     is_active=models.BooleanField(default=True)
 
 class WishList(models.Model):
     owner=models.OneToOneField(User,on_delete=models.CASCADE,related_name="cart")

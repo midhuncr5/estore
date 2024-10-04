@@ -79,9 +79,6 @@ class HomePageView(View):
 
         qs=Product.objects.all()
 
-
-
-
         return render(request,"store/index.html",{"product":qs})
     
 class UserProfileUpdateView(View):
@@ -147,6 +144,7 @@ class ProductDetailView(View):
 
         product_obj=Product.objects.get(id=id)
 
+
         return render(request,"store/product_detail.html",{"product":product_obj})
     
 
@@ -197,6 +195,23 @@ class CartListView(View):
         t=total.get("total")
 
         return render(request,"store/cart_summary.html",{"cart_items":qs,"total":t})
+    
+class ProductListView(View):
+    def get(self,request,*args,**kwargs):
+
+        id=kwargs.get("pk")
+        
+        user_detail=UserDetail.objects.get(user_profile_object=request.user)
+
+        
+
+        product_obj=Product.objects.get(id=id)
+
+        
+
+        
+
+        return render(request,"store/product_list.html",{"product":product_obj,"user":user_detail})
 
 
 class CartRemoveView(View):
@@ -257,14 +272,9 @@ import razorpay
 class CheckoutView(View):
 
     def get(self,request,*args,**kwargs):
-
-        cart_items=request.user.cart.cart_items.filter(is_order_placed=False)
-
+        id=kwargs.get("pk")
         
-
-
-
-
+        cart_items=request.user.cart.cart_items.filter(is_order_placed=False)
         t=request.user.cart.cart_items.filter(is_order_placed=False).values("product_object__price").aggregate(total= Sum("product_object__price")).get("total")
 
         detail=UserDetail.objects.get(user_profile_object=request.user)
@@ -306,7 +316,7 @@ class CheckoutView(View):
         return render(request,"store/checkout.html",{"cart":cart_items,"total":total,"detail":detail,"context":context})
 
 
-        
+
         
         
 
