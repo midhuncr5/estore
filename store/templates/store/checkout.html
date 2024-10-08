@@ -11,8 +11,9 @@
                 <div class="col-8">
                     <h1>checkout</h1>
                     <div>
-                    {%for c in cart%}
-                    <form action="" method="post">
+                    {%if cart%}
+                        {%for c in cart%}
+                        <form action="" method="post">
                         {%csrf_token%}
 
                         <div class="card " style="max-width: 540px;">
@@ -36,26 +37,56 @@
                             </div>
                           </div>
 
-                    </form>
+                          </form>
                     {%endfor%}
+                    {%else%}
+                    <form action="" method="post">
+                        {%csrf_token%}
+
+                        <div class="card " style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img src="{{product.product_pic.url}}" class="" alt="..." width="100%" height="50%" >
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{product.title}}</h5>
+                                  <p class="card-text">{{product.description}}</p>
+                                  <p class="card-text">{{product.brand_object}}</p>
+                                  <p class="card-text">{{product.memory_object}}</p>
+                                  <p class="card-text">{{product.price}} R.s</p>
+                                 
+      
+                                </div>
+                    
+                
+                              </div>
+                            </div>
+                          </div>
+
+                          </form>
+
+                    {%endif%}
                     <div class="border" style="max-width: 540px;">
                         <center>
+                        <form action="" method="post">
                         <table>
                             <tr>
                                 <td colspan="2" style="font-weight: bolder;"><u>customer details</u></td>
                             </tr>
                             <tr>
                                 <td>name :</td>
-                                <td>{{detail.name}}</td>
+                                <td>{{name}}</td>
                             </tr>
                             <tr>
                                 <td>address :</td>
-                                <td>{{detail.address}}</td>
+                                <td>{{address}}</td>
                             </tr>
                             <tr>
                                 <td>phone :</td>
-                                <td>{{detail.phone}}</td>
+                                <td>{{phone}}</td>
                             </tr>
+                            </form>
                             <tr>
                                 <td colspan="2"><button id="rzp-button1" class="btn btn-success form-control ">payment</button></td>
 
@@ -94,6 +125,7 @@
                                 
                             </tr>
                         </table>
+                      
 
                         </center>
                     </div>

@@ -26,22 +26,20 @@ urlpatterns = [
     path("signout/",views.SignOutView.as_view(),name="sign-out"),
     path("index/",views.HomePageView.as_view(),name="home"),
     path("profile/<int:pk>/change",views.UserProfileUpdateView.as_view(),name="profile-edit"),
-    path("products/add/",views.ProductCreateView.as_view(),name="product-add"),
     path("product/detail/<int:pk>/",views.ProductDetailView.as_view(),name="product-detail"),
     path("products/add/<int:pk>/wishlist/",views.AddToCartView.as_view(),name="cart-add"),
     path("cart/summary/",views.CartListView.as_view(),name="cart-summary"),
     path("remove/cartitem/<int:pk>/",views.CartRemoveView.as_view(),name="cart-remove"),
-    # path("buy/now/",views.BuyNowView.as_view(),name="buy-now"),
-    path("userdetail/<int:pk>/confirm/",views.UserDetailConfirmView.as_view(),name="user-detail"),
-    path("checkout/",views.CheckoutView.as_view(),name="checkout"),
+    path("customer/detail/",views.CustomerDetailConfirmView.as_view(),name="customer-detail"),
     path("payment/verification/",views.PaymentVerificationView.as_view(),name="payment-verify"),
     path("order/summary",views.MyPurchaseView.as_view(),name="my-orders"),
     path('results/',views.SearchView.as_view(), name='search'),
-    path("product/<int:pk>/list/",views.ProductListView.as_view(),name="product-list")
+    path("product/<int:pk>/list/",views.ProductListView.as_view(),name="product-list"),
+    path("change/address/<int:pk>/<int:mk>",views.ChangeAddressView.as_view(),name="change-address"),
+    path("single/checkout/<int:pk>/",views.SingleCheckoutView.as_view(),name="single-checkout"),
+    path("review/add/<int:pk>/",views.ReviewCreateView.as_view(),name="review-add")
     
-    
-    
-    
+     
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

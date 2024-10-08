@@ -1,24 +1,30 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from store.models import UserProfile,Product,UserDetail
+from store.models import UserProfile,Product,UserDetail,Review
 
 
 
 class SignupForm(UserCreationForm):
 
-    password1=forms.CharField()
-    password2=forms.CharField()
+    password1=forms.CharField(widget=(forms.TextInput(attrs={"class":"form-control"})))
+    password2=forms.CharField(widget=(forms.PasswordInput(attrs={"class":"form-control"})))
 
     class Meta:
         model=User
         fields=["username","email","password1","password2"]
 
+        widgets={
+            "username":forms.TextInput(attrs={"class":"form-control "}),
+            "email":forms.EmailInput(attrs={"class":"form-control"}),
+           
+        }
+
 
 class SiginForm(forms.Form):
 
-    username=forms.CharField()
-    password=forms.CharField()
+    username=forms.CharField(widget=(forms.TextInput(attrs={"class":"form-control"})))
+    password=forms.CharField(widget=(forms.TextInput(attrs={"class":"form-control"})))
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -61,7 +67,19 @@ class UserDetailConfirmForm(forms.ModelForm):
             "phone":forms.NumberInput(attrs={"class":"form-control"})
         }
 
-        
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+
+        model=Review
+
+        fields=["comment","rating"]
+
+        widgets={
+            "comment":forms.TextInput(attrs={"class":"form-control"}),
+            "rating":forms.NumberInput(attrs={"class":"form-control"})
+        }
 
 
     

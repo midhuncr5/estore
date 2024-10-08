@@ -34,9 +34,11 @@
         </div>
         {%endfor%}
         <div>
-        {{total}}
+      
+        <b>Total :  {{total}} Rs.</b>
 
-        <a href="{%url 'user-detail' request.user.profile_detail.id%}" class="btn btn-warning">Place order</a>
+        <a href="{%url 'customer-detail'%}" class="btn btn-warning" style="float: right; margin-right: 100px;">place order</a>
+        
         </div>
         
 

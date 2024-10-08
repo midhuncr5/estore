@@ -22,7 +22,9 @@ class UserProfile(models.Model):
     def __str__(self):
 
         return self.user_object.username
-    
+
+
+
 class UserDetail(models.Model):
 
     name=models.CharField(max_length=200)        
@@ -30,8 +32,6 @@ class UserDetail(models.Model):
     address=models.TextField()
 
     phone=models.CharField(max_length=100,null=True)
-
-    user_profile_object=models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile_detail")
 
     created_date=models.DateTimeField(auto_now_add=True)
 
@@ -127,9 +127,10 @@ class Product(models.Model):
 
     is_active=models.BooleanField(default=True)
 
+    # @property
+    # def avg_rating(self):
 
-
-
+    #     return Review.objects.filter(product_object=self).count()
 
 
 
@@ -158,10 +159,17 @@ class WishListItems(models.Model):
 
     is_active=models.BooleanField(default=True)
 
+
     
 class OrderSummary(models.Model):
 
     user_object=models.ForeignKey(User,on_delete=models.CASCADE,related_name="orders")
+
+    name=models.CharField(max_length=200)
+
+    address=models.CharField(max_length=300)
+
+    phone=models.CharField(max_length=100)
 
     product_object=models.ManyToManyField(Product)
 
@@ -222,6 +230,28 @@ def create_profile_detail(sender,instance,created,*args,**kwargs):
     if created:
         UserDetail.objects.create(user_profile_object=instance)
 post_save.connect(sender=User,receiver=create_profile_detail)
+
+
+from django.core.validators import MaxValueValidator,MinValueValidator
+class Review(models.Model):
+
+    product_object=models.ForeignKey(Product,on_delete=models.CASCADE,related_name="project_review")
+
+    user_object=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    comment=models.TextField()
+
+    rating=models.PositiveIntegerField(default=1,validators=[MinValueValidator(1),MaxValueValidator(5)])
+    
+    created_date=models.DateTimeField(auto_now_add=True)
+
+    updated_date=models.DateTimeField(auto_now=True)
+
+    is_active=models.BooleanField(default=True)
+
+
+
+    
 
 
 

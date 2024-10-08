@@ -1,0 +1,35 @@
+{%extends 'store/base.html'%}
+
+
+{%block 'mainblock'%}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mt-5">
+           <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 mt-5">
+                <form action="" method="post">
+                    {%csrf_token%}
+                    <center>
+                    <h3>Rate our product</h3>
+                    </center>
+    
+                    {{review}}
+
+                    <button type="submit" class="btn btn-success form-control mt-4">save</button>
+    
+                </form>
+            </div>
+            <div class="col-3"></div>
+           </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+
+
+
+{%endblock%}

@@ -1,0 +1,37 @@
+{%extends 'store/base.html'%}
+
+
+{%block 'mainblock'%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mt-5">
+        
+            <form action="" method="post">
+                {%csrf_token%}
+                <center>
+                <h3>confirm details</h3>
+                </center>
+
+                    name :
+                    <input type="text" name="name" class="form-control">
+                    
+                    address :
+                    <textarea name="address" rows="4" class="form-control">
+
+                    </textarea>
+                    
+                    phone :
+                    <input type="number" name="phone" class="form form-control">
+                    
+                <button type="submit" class="btn btn-success form-control">confirm</button>
+            </form>
+        
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+
+{%endblock%}

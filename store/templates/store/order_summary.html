@@ -18,7 +18,7 @@
 
           <div class="col-md-8">
             <div class="card-body">
-              <table>
+              <table style="width: 500px; ">
                 <tr>
                   <td style="font-weight: bolder;">order id :</td>
                   <td style="font-weight: bolder;">{{o.order_id}}</td>
@@ -27,6 +27,21 @@
                   <td style="font-weight: bolder;">order status :</td>
                   <td style="font-weight: bolder;"> {{o.status}}</td>
                 </tr>
+                <tr>
+                  <td>name:</td>
+                  <td>{{o.name}}</td>
+                </tr>
+                <tr>
+                  <td>phone no:</td>
+                  <td>{{o.phone}}</td>
+                </tr>
+                <tr>
+                  <td>address :</td>
+                  <td>{{o.address}}</td>
+
+                </tr>
+
+                
               </table>
               {%for p in o.product_object.all%}
               <div class="col-md-4">
@@ -35,6 +50,8 @@
               <p class="card-text">{{p.title}}</p>
               <p class="card-text">{{p.brand_object}}</p>
               <p class="card-text">{{p.price}}</p>
+
+              <a href="{%url 'review-add' p.id %}" style="text-decoration-line: none;">Rate this product?</a>
               {%endfor%}
               
               <table>
@@ -42,6 +59,7 @@
                   <td style="font-weight: bolder;">Total : </td>
                   <td style="font-weight: bolder;">{{o.total}} Rs.</td>
                 </tr>
+               
               </table>
             </div>
           </div>

@@ -37,6 +37,14 @@
                             <td>battery capacity :</td>
                             <td>{{product.battery_capacity}}</td>
                         </tr>
+                       <tr>
+                        {%if rating%}
+                        <td>Rating :</td>
+                        <td> {{rating}} </td>
+                        {%else%}
+                        {%endif%}
+                       </tr>
+                         
                         <tr>
                             <td><p style="font-weight: bold;">price :</p></td>
                             <td><p style="font-weight: bolder;">{{product.price}}</p></td>
@@ -81,3 +89,20 @@
 
 
 {%endblock%}
+
+
+
+<!-- 
+{%if review%}
+{%for r in review%}
+<tr>
+ <td>comment :</td>
+ <td>{{r.comment}}</td>
+</tr>
+<tr>
+ <td>rating :</td>
+ <td>{{r.rating}}</td>
+</tr>
+{%endfor%}
+{%else%}
+{%endif%} -->
