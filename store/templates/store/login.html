@@ -20,14 +20,16 @@
             {%endfor%}
 
         {%endif%}
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-6 mt-5">
                 <form action="" method="post">
                     {%csrf_token%}                 
 
-                    <div class="card" style="width: 390px">
-                        <img src="{% static 'images/user-person-profile-block-account-circle.svg' %}" class="" alt="...">
+                    <div class="card" >
+                        <center>
+                        <img src="{% static 'images/user-person-profile-block-account-circle.svg' %}" class="" alt="..." width="200px">
+                        </center>
                         <div class="card-body">
                          {{login}}
 

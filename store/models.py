@@ -98,6 +98,13 @@ class Colour(models.Model):
     def __str__(self):
 
         return self.title
+    
+
+
+        
+
+
+
 
 class Product(models.Model):
     
@@ -112,12 +119,18 @@ class Product(models.Model):
     brand_object=models.ForeignKey(Brand,on_delete=models.CASCADE)
 
     tag_object=models.ManyToManyField(Tag)
+
+    operating_system_object=models.CharField(max_length=200,null=True,default="none")
+
+    processor_type=models.CharField(max_length=200,null=True,default="none")
     
-    memory_object=models.ForeignKey(memory,on_delete=models.CASCADE,null=True)
+    memory_object=models.ForeignKey(memory,on_delete=models.CASCADE,null=True,default="none")
+
+    hard_drive_capacity=models.CharField(max_length=200,null=True,default="none")
 
     colour_object=models.ForeignKey(Colour,on_delete=models.CASCADE)
 
-    battery_capacity=models.CharField(max_length=200)          
+    battery_capacity=models.CharField(max_length=200,null=True)          
     
     price=models.PositiveIntegerField()
     
@@ -127,12 +140,7 @@ class Product(models.Model):
 
     is_active=models.BooleanField(default=True)
 
-    # @property
-    # def avg_rating(self):
-
-    #     return Review.objects.filter(product_object=self).count()
-
-
+ 
 
 
 
@@ -169,6 +177,8 @@ class OrderSummary(models.Model):
 
     address=models.CharField(max_length=300)
 
+    email=models.EmailField()
+
     phone=models.CharField(max_length=100)
 
     product_object=models.ManyToManyField(Product)
@@ -178,7 +188,7 @@ class OrderSummary(models.Model):
     STATUS =(
         ('order placed','order placed'),
         ('Out for Delivery','Out for Delivery'),
-        ('Delivered','Delivered'), )
+        ('Delivered','Delivered'),)
       
     status=models.CharField(max_length=50,null=True,choices=STATUS)
 
@@ -225,11 +235,7 @@ post_save.connect(sender=User,receiver=create_cart)
 
 
 
-def create_profile_detail(sender,instance,created,*args,**kwargs):
 
-    if created:
-        UserDetail.objects.create(user_profile_object=instance)
-post_save.connect(sender=User,receiver=create_profile_detail)
 
 
 from django.core.validators import MaxValueValidator,MinValueValidator

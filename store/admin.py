@@ -13,6 +13,7 @@ admin.site.register(Tag)
 admin.site.register(Brand)
 admin.site.register(memory)
 admin.site.register(Colour)
+
 admin.site.register(Product)
 admin.site.register(OrderSummary)
 

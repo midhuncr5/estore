@@ -2,107 +2,329 @@
 
 {%block 'mainblock'%}
 
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-12">
+{%load static%}
 
-            <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
-                <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                    
-                  <img src="{{product.product_pic.url}}" alt="card-image" />
-                </div>
-                <div class="p-4">
-                  <h4 class="mb-2 text-slate-800 text-xl font-semibold">
-                    {{product.title}}
-                  </h4>
-                  <p class="text-slate-600 leading-normal font-light">
-                    {{product.description}}
-                  </p>
-                </div>
-                <div class="p-4">
-                    <table>
-                        <tr>
-                            <td> <p style="font-weight: bold;">Brand :</p></td>
-                            <td><p style="font-weight: bolder;">{{product.brand_object}}</p></td>
-                        </tr>
-                        <tr>
-                            <td>memory/RAM  :</td>
-                            <td>{{product.memory_object}}</td>
-                        </tr>
-                        <tr>
-                            <td>colour :</td>
-                            <td>{{product.colour_object}}</td>
-                        </tr>
-                        <tr>
-                            <td>battery capacity :</td>
-                            <td>{{product.battery_capacity}}</td>
-                        </tr>
-                       <tr>
-                        {%if rating%}
-                        <td>Rating :</td>
-                        <td> {{rating}} </td>
-                        {%else%}
-                        {%endif%}
-                       </tr>
-                         
-                        <tr>
-                            <td><p style="font-weight: bold;">price :</p></td>
-                            <td><p style="font-weight: bolder;">{{product.price}}</p></td>
 
-                        </tr>
-                      </table>
-                <!-- </div> -->
-                      <!-- button -->
-                
-                      <a href="{%url 'cart-add' product.id%}" class="bookmarkBtn">
-                        <span class="IconContainer">
-                          <svg viewBox="0 0 384 512" height="0.9em" class="icon">
-                            <path
-                              d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"
-                            ></path>
-                          </svg>
-                        </span>
-                        <p class="text">Bookmark</p>          
-                   </a>
- 
- 
-                   <a href="{%url 'product-list' product.id%}" class="buynow">
-                       <span>Buy now</span>
-                   </a>
-            </div>          
-                      
- 
- 
 
-                    
-               
-            
-               
-                  
-              
+<div>
+<section class="py-12 sm:py-16 "> 
+  <div class="container mx-auto px-4">
+    <nav class="flex">
+      <ol role="list" class="flex items-center">
+        <li class="text-left">
+          <div class="-m-1">
+            <a href="#" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"> Home </a>
+          </div>
+        </li>
 
+        <li class="text-left">
+          <div class="flex items-center">
+            <span class="mx-2 text-gray-400">/</span>
+            <div class="-m-1">
+              <a href="#" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"> Product </a>
+            </div>
+          </div>
+        </li>
+
+        <li class="text-left">
+          <div class="flex items-center">
+            <span class="mx-2 text-gray-400">/</span>
+            <div class="-m-1">
+              <a href="#" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page"> detail </a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
+      <div class="lg:col-span-3 lg:row-end-1">
+        <div class="lg:flex lg:items-start">
+          <div class="lg:order-2 lg:ml-5">
+            <div class="max-w-xl overflow-hidden rounded-lg">
+              <img class="h-full w-full max-w-full object-cover" src="{{product.product_pic.url}}" alt="" />
+            </div>
+          </div>
+
+          <div class="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
+            <!-- <div class="flex flex-row items-start lg:flex-col">
+              <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center">
+                <img class="h-full w-full object-cover" src="/images/JHxMnVrtPMdcNU1s_7g7f.png" alt="" />
+              </button>
+              <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
+                <img class="h-full w-full object-cover" src="/images/JHxMnVrtPMdcNU1s_7g7f.png" alt="" />
+              </button>
+              <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
+                <img class="h-full w-full object-cover" src="/images/JHxMnVrtPMdcNU1s_7g7f.png" alt="" />
+              </button> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 lg:row-span-2 lg:row-end-2 ">
+        <h1 class="sm: text-2xl font-bold text-gray-900 sm:text-3xl">{{product.title}}</h1>
+
+        <div class="mt-5 flex items-center">
+          <div class="flex items-center">
+            <!-- <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> -->
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            <!-- </svg> -->
+            <!-- <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> -->
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            <!-- </svg> -->
+            <!-- <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> -->
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            <!-- </svg> -->
+            <!-- <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> -->
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            <!-- </svg> -->
+            <!-- <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> -->
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            <!-- </svg> -->
+          </div>
+
+          {%if rating%}
+          <td><p style="margin-top: 2px;">Rating :</p></td> 
+          <p class="ml-2 text-sm font-medium text-gray-500">{{rating}} /{{rating_count}} <i class="fa-solid fa-star fa-beat-fade" style="color:#ffd401"></i></p>
+          {%else%}
+          {%endif%}
+        </div>
+
+        <h2 class="mt-8 text-base text-gray-900">About</h2>
+        <div class="mt-3 flex select-none flex-wrap items-center gap-1">
+          {% if product.hard_drive_capacity == "none" %}
+          {%else%}
+          <b>RAM :</b>
+          <label class="">
+            <input type="radio" name="type" value="Powder" class="peer sr-only" checked />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">{{product.memory_object}}</p>
+          {%endif%}
+          </label>
+
+          {% if product.hard_drive_capacity == "none" %}
+          {%else%}
+          <b>Internal storage :</b>
+          <label class="">
+            <input type="radio" name="type" value="Whole Bean" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">{{product.hard_drive_capacity}}</p>
+          {%endif%}
+        </label></div>
+        <div class="mt-3 flex select-none flex-wrap items-center gap-1">
+          <b>colour :</b>
+          <label class="">
+            <input type="radio" name="type" value="Groud" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">{{product.colour_object}}</p>
+          </label>
+          {% if product.operating_system_object == "none" %}
+          {%else%}
+          <b> operating system :</b>
+          <label class="">
+            <input type="radio" name="type" value="Groud" class="peer sr-only" />
+            <p class="bg-black text-white rounded-lg border border-black px-6 py-2 font-bold">{{product.operating_system_object}}</p>
+            {%endif%}
+          </label>
+        </div>
+       
+
+        <h2 class="mt-8 text-base text-gray-900"></h2>
+        <div class="mt-3 flex select-none flex-wrap items-center gap-1">
+          <label class="">
+            {% if product.processor_type == "none" %}
+            {%else%}
+            <input type="radio" name="subscription" value="4 Months" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">{{product.processor_type}}</p>
+            <span class="mt-1 block text-center text-xs"><b>processor type</b></span>
+            {%endif%}
+          </label>
+      
+          <label class="">
+            <input type="radio" name="subscription" value="8 Months" class="peer sr-only" checked />
+            {% if product.battery_capacity == "none" %}
+            {%else%}
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">{{product.battery_capacity}}</p>
+            <span class="mt-1 block text-center text-xs"><b>battery capacity</b></span>
+            {%endif%}
+          </label>
+          <label class="">
+            <input type="radio" name="subscription" value="12 Months" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">{{product.brand_object}}</p>
+            <span class="mt-1 block text-center text-xs"><b>brand </b></span>
+          </label>
+        </div>
+
+        <div class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
+          <div class="flex items-end">
+            <h1 class="text-3xl font-bold">Price :{{product.price}}</h1>
+            <span class="text-base"><b>Rs.</b><span>
+          </div>
+
+          <a href="{%url 'cart-add' product.id%}" class="bookmarkBtn">
+            <span class="IconContainer">
+              <svg viewBox="0 0 384 512" height="0.9em" class="icon">
+                <path
+                  d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"
+                ></path>
+              </svg>
+            </span>
+            <p class="text">Bookmark</p>          
+       </a>
 
         </div>
+
+        <div class="mt-8 space-y-2">
+         <a href="{%url 'product-list' product.id%}" class="buynow">
+           <span>BUY NOW</span>
+         </a>
+         
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <div class="border-b border-gray-300">
+          <nav class="flex gap-4">
+            <a href="#" title="" class="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800"> More </a>
+
+            <!-- <a href="#" title="" class="inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600">
+              Reviews
+              <span class="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100"> 1,209 </span>
+            </a> -->
+          </nav>
+        </div>
+
+        <div class="mt-8 flow-root sm:mt-12">
+          <h1 class="text-3xl font-bold">Description</h1>
+          <p class="mt-4">{{product.description}}</p>   
+        </div>
+
+
+
+        {%if review%}
+        <div class="lg:col-span-3">
+          <div class="border-b border-gray-300">
+            <nav class="flex gap-4">
+              <a href="#" title="" class="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800"> Review <i class="fa-solid fa-star fa-beat-fade" style="color:#ffd401"></i></a>
+            </nav>
+          </div>
+        </div>
+        
+        {%for r in review%}
+        <div>
+        <ul class="">
+          <li id="msg" class="py-8 text-left border px-4 m-2">
+            <div class="flex items-start">
+              <img class="block h-10 w-10 max-w-full flex-shrink-0 rounded-full align-middle" src="{%static 'images/user-person-profile-block-account-circle.svg'%}" alt="" />
+        
+              <div class="ml-6">
+                <div class="flex items-center">
+                  <svg class="block h-6 w-6 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+                  </svg>
+                  <svg class="block h-6 w-6 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+                  </svg>
+                  <svg class="block h-6 w-6 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+                  </svg>
+                  <svg class="block h-6 w-6 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+                  </svg>
+                  <svg class="block h-6 w-6 align-middle text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+                  </svg>
+                </div>
+                <p class=" text-sm font-bold text-gray-900">{{r.user_object}}</p>
+                <p class=" text-base text-gray-900">{{r.comment}}</p>
+               
+                <p class="mt-1 text-sm text-gray-600">{{r.created_date}}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      {%endfor%}
+      {%else%}
+      {%endif%}
+      </div>
     </div>
+  </div>
+</section>
 </div>
 
+
+ 
+   
+   
+
+
+
+        
+<!--  more products-->
+<div class="lg:col-span-3 mt-20">
+  <div class="border-b border-gray-300">
+    <nav class="flex gap-4">
+      <a href="#" title="" class="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800"> show more  products </a>
+    </nav>
+  </div>
+</div>
+
+<div class="mx-auto grid w-full max-w-7xl   items-center space-y-4 px-2 py-10 md:grid-cols-6 md:gap-6 md:space-y-0 lg:grid-cols-4 mt-20">
+  {%for p in products%}
+
+  <div class="rounded-md border shadow-lg 3px 4px bg-white ">
+    <img class="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[200px] lg:h-[200px]" src="{{p.product_pic.url}}" alt="image description">
+
+   <div class="p-4">
+     <h1 class="inline-flex items-center text-lg font-semibold text-black">
+       {{p.title}} 
+     </h1>
+   
+     <div class="mt-4">
+ 
+      
+       
+      
+     </div>
+     
+     <div class="mt-2 flex items-center space-x-2">
+       <span class="block text-md font-semibold text-black">price:</span>
+       
+       <span class="block cursor-pointer rounded-md  p-1 px-2 text-md font-semibold  text-black ">
+         {{p.price}} Rs.
+       </span>
+     
+     </div>
+     <div class="mt-2 flex items-center space-x-2">
+     <a href="{%url 'product-detail' p.id%}"
+       type="button"
+       class="mt-4 w-1/2  rounded-md bg-indigo-600 px-2 py-1.5 text-sm font-semibold text-white text-center shadow-sm hover:bg-green/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+     >
+       VIEW MORE
+     </a>
+
+     <a href="{%url 'cart-add' p.id%}"
+     type="button"
+     class="mt-4 w-1/2  rounded-md bg-purple-600 px-2 py-1.5 text-sm font-semibold text-white text-center shadow-sm hover:bg-green/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+   >
+     ADD TO CART
+   </a>
+     </div>
+   </div>
+  </div>
+
+
+   {%endfor%}
+
+</div>
+
+
+
+      
+      
+  
 
 
 {%endblock%}
 
 
 
-<!-- 
-{%if review%}
-{%for r in review%}
-<tr>
- <td>comment :</td>
- <td>{{r.comment}}</td>
-</tr>
-<tr>
- <td>rating :</td>
- <td>{{r.rating}}</td>
-</tr>
-{%endfor%}
-{%else%}
-{%endif%} -->

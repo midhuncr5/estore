@@ -9,14 +9,14 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container mt-2">
+    <div class="container ">
         <div class="row">
             <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-6 mt-5">
                 <form action="" method="post">
                     {%csrf_token%}
 
-                    <div class="card" style="width: 390px">
+                    <div class="card" >
                         <center>
                         <img src="{% static 'images/user-person-profile-block-account-circle.svg' %}" class="" alt="..." width="200px">
                         </center>
@@ -26,7 +26,7 @@
                          <button type="submit" class="btn btn-success mt-3 form-control">register</button>
                         </div>
                         <div style="margin-left: 30px; margin-bottom: 20px;">
-                             Already have an account <a href="{%url 'login'%}"> login</a>
+                             Already have an account ?<a href="{%url 'login'%}"> login</a>
                         </div>
                       </div>
                    

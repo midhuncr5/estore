@@ -6,14 +6,14 @@
 <div class="container">
   <div class="row">
       <div class="col-3"></div>
-      <div class="col-6">
+      <div class="col-6 mt-5">
         <center>
-        <h1>cart items</h1>
+        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">cart items</p>
         </center>
         {%for c in cart_items%}
         
 
-        <div class="card mb-3" style="max-width: 540px;">
+        <div class="card mb-3" style="max-width: 540px;margin-top: 10px; border-color: rgb(35, 33, 33);">
           <div class="row g-0">
             <div class="col-md-4">
               <img src="{{c.product_object.product_pic.url}}" class="" alt="..." width="100%" height="50%" >
@@ -22,10 +22,10 @@
               <div class="card-body">
                 <h5 class="card-title">{{c.product_object.title}}</h5>
                 <p class="card-text">{{c.product_object.description}}</p>
-                <p class="card-text">{{c.product_object.brand_object}}</p>
-                <p class="card-text">{{c.product_object.memory_object}}</p>
+                <p class="card-text"><b>brand :</b>{{c.product_object.brand_object}}</p>
+              
                 <p class="card-text" style="font-weight: bold;">{{c.product_object.price}} R.s</p>
-                <a href="{%url 'cart-remove' c.id%}" class="btn btn-secondary">remove</a>
+                <a href="{%url 'cart-remove' c.id%}" class="btn btn-outline-secondary mt-2"><i class="fa-solid  fa-trash" style="color: #e31102;"></i> Remove</a>
 
                 
               </div>
@@ -34,11 +34,20 @@
         </div>
         {%endfor%}
         <div>
-      
-        <b>Total :  {{total}} Rs.</b>
-
-        <a href="{%url 'customer-detail'%}" class="btn btn-warning" style="float: right; margin-right: 100px;">place order</a>
         
+        
+        <p  style="padding-left: 200px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;margin-top: 50px;">Total :  {{total}} Rs.</p>
+        
+
+     
+
+        <div class="mt-6 text-center">
+          <a href="{%url 'customer-detail'%}" type="button" class="mb-5 group inline-flex w-[550px] mr-[200px] items-center justify-center rounded-md bg-purple-600 px-3 py-2 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+            Place Order
+            <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
         
 

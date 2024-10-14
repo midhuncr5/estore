@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views import View
-from store.forms import SignupForm,SiginForm,UserProfileForm,ProductForm,UserDetailConfirmForm,ReviewForm
+from store.forms import SignupForm,SiginForm,UserProfileForm,UserDetailConfirmForm,ReviewForm
 from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
 from store.models import Product
@@ -74,7 +74,7 @@ class SignOutView(View):
 
         logout(request)
 
-
+        messages.success(request,"logout")
         return redirect("login")
     
 
@@ -130,7 +130,7 @@ class ProductDetailView(View):
         
         review=Review.objects.filter(product_object=product_obj)
 
-       
+        products_obj=Product.objects.all().exclude(id=id)[0:12]
 
         if review:
 
@@ -138,13 +138,13 @@ class ProductDetailView(View):
 
             rating_count=Review.objects.filter(product_object=product_obj).count()
 
-            avg_rating=rating_sum/rating_count
+            avg_rating=rating_sum//rating_count
 
 
-            return render(request,"store/product_detail.html",{"product":product_obj,"review":review,"rating":avg_rating})
+            return render(request,"store/product_detail.html",{"product":product_obj,"review":review,"rating":avg_rating,"review":review,"rating_count":rating_count,"products":products_obj})
         
         else:
-            return render(request,"store/product_detail.html",{"product":product_obj,})
+            return render(request,"store/product_detail.html",{"product":product_obj,"products":products_obj})
 
 
 
@@ -201,7 +201,7 @@ class CartListView(View):
         return render(request,"store/cart_summary.html",{"cart_items":qs,"total":t})
     
 
-       
+from django.core.mail import send_mail      
 @method_decorator(signin_required,name="dispatch")     
 class CustomerDetailConfirmView(View):
 
@@ -214,6 +214,9 @@ class CustomerDetailConfirmView(View):
         name=request.POST.get("name")
         address=request.POST.get("address")
         phone=request.POST.get("phone")
+        email=request.POST.get("email")
+
+        
 
         cart_items=request.user.cart.cart_items.filter(is_order_placed=False)
         t=request.user.cart.cart_items.filter(is_order_placed=False).values("product_object__price").aggregate(total= Sum("product_object__price")).get("total")
@@ -227,7 +230,7 @@ class CustomerDetailConfirmView(View):
 
         payment = client.order.create(data=data)
            
-        order_summary_obj=OrderSummary.objects.create(user_object=request.user,order_id=payment.get("id"),total=t,name=name,address=address,phone=phone)
+        order_summary_obj=OrderSummary.objects.create(user_object=request.user,order_id=payment.get("id"),total=t,name=name,address=address,phone=phone,email=email)
 
         for ci in cart_items:
 
@@ -249,7 +252,7 @@ class CustomerDetailConfirmView(View):
 
         # ================================================
 
-        return render(request,"store/checkout.html",{"cart":cart_items,"total":total,"context":context,"name":name,"address":address,"phone":phone})
+        return render(request,"store/checkout.html",{"cart":cart_items,"total":t,"context":context,"name":name,"address":address,"phone":phone,"email":email})
         
  
 
@@ -319,6 +322,7 @@ class SingleCheckoutView(View):
         name=request.POST.get("name")
         address=request.POST.get("address")
         phone=request.POST.get("phone")
+        email=request.POST.get("email")
 
 
 
@@ -343,14 +347,15 @@ class SingleCheckoutView(View):
 
     
            
-        order_summary_obj=OrderSummary.objects.create(user_object=request.user,order_id=payment.get("id"),total=t,name=name,address=address,phone=phone)
-
+        order_summary_obj=OrderSummary.objects.create(user_object=request.user,order_id=payment.get("id"),total=t,name=name,address=address,phone=phone,email=email)
+        
+    
         if order_summary_obj:
 
             order_summary_obj.product_object.add(product_obj)
 
            
-
+        
         order_summary_obj.save()
         
 
@@ -365,7 +370,7 @@ class SingleCheckoutView(View):
 
         # ================================================
 
-        return render(request,"store/checkout.html",{"product":product_obj,"total":total,"context":context,"name":name,"address":address,"phone":phone})
+        return render(request,"store/checkout.html",{"product":product_obj,"total":t,"context":context,"name":name,"address":address,"phone":phone,"email":email})
 
 
 @method_decorator(signin_required,name="dispatch")     
@@ -387,19 +392,24 @@ class CartRemoveView(View):
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+
 @method_decorator(csrf_exempt,name="dispatch")
 @method_decorator(signin_required,name="dispatch")     
 class PaymentVerificationView(View):
-    def post(self,request,*args,**kwargs):
-
-       
+    def post(self,request,*args,**kwargs):  
+        
+        
+        
         client = razorpay.Client(auth=(KEY_ID, KEY_SECRET))
 
         order_summary_obj=OrderSummary.objects.get(order_id=request.POST.get("razorpay_order_id"))
 
+        
+    
         login(request,order_summary_obj.user_object)
 
-        # 'razorpay_payment_id': ['pay_Osc4W3SzwsS9D4'], 'razorpay_order_id': ['order_Osc45PLWmmuS2r'], 'razorpay_signature': ['0ddd337bace49384729e5bb28dcb3b115e6b41df29bd0d4e6ef189d81748931d'
+        
+        # 'razorpay_payment_id': ['pay_Osc4W3SzwsS9D4'], 'razorpay_order_id': ['order_Osc45PLWmmuS2r'], 'razorpay_signature': ['0ddd337bace49384729e5bb28dcb3b115e6b41df29bd0d4e6ef189d81748931d']
 
         try:
             client.utility.verify_payment_signature(request.POST)
@@ -407,20 +417,18 @@ class PaymentVerificationView(View):
             print("payment success")
 
             order_id=request.POST.get("razorpay_order_id")
-
+   
 
             OrderSummary.objects.filter(order_id=order_id).update(is_paid=True,status="order placed")
 
 
             cart_items=request.user.cart.cart_items.filter(is_order_placed=False)
+            
+            
 
-
-        
             for ci in cart_items:
                 ci.is_order_placed=True
                 ci.save()
-            
-
 
         except:
             print("payment failed")
@@ -429,7 +437,10 @@ class PaymentVerificationView(View):
         return redirect("home") 
     
 
-@method_decorator(signin_required,name="dispatch")     
+
+
+@method_decorator(signin_required,name="dispatch")
+     
 class MyPurchaseView(View):
     def get(self,request,*args,**kwargs):
 

@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
   <script src="https://kit.fontawesome.com/796e5da87d.js" crossorigin="anonymous"></script>
- 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+
+
 <style>
   /* From Uiverse.io by vinodjangid07 */ 
 .bookmarkBtn {
   width: 150px;
+  
   margin-left: 20px;
   height: 40px;
   border-radius: 40px;
@@ -46,10 +50,11 @@
 .text {
   
   height: 100%;
-  margin-top: 10px;
+
   width: 90px;
   display: flex;
   align-items: center;
+  
   justify-content: center;
   color: white;
   z-index: 1;
@@ -75,12 +80,10 @@
 }
 
 
+
 /* From Uiverse.io by abrahamcalsin */ 
 .buynow {
   position: relative;
-  float: right;
-  text-decoration: none;
-  margin-bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,7 +116,6 @@
   text-align: center;
   text-decoration: none;
   width: 100%;
-
   padding: 18px 25px;
   color: #fff;
   font-size: 1.125em;
@@ -141,6 +143,8 @@
     transform: scale(1);
   }
 }
+
+
 #search{
   width: 200px;
 
@@ -160,59 +164,108 @@
   margin-right: 30px;
 }
 
+#msg{
+  margin-top: 10px;
+  
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px;
+}
+#msg:hover{
+  
+
+  box-shadow: 2px 2px 10px;
+  box-shadow: #183153;
+}
+
+
+
+
+
+
 
 
 </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg " style="background-color:mediumslateblue">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="font-weight: bolder;"><i class="fa-brands fa-shopware"></i> E-STORE</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{%url 'home'%}" style="font-weight: bold;color: black;" >Home</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{%url 'cart-summary'%}"  style="color:black;font-weight: bold;"><i class="fa-solid fa-cart-shopping">cart</i></a>
-              </li>
 
 
-            
+<body class="bg-white">
+    <div class="relative w-full bg-purple-600">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4  sm:px-6 lg:px-8">
+          <div class="inline-flex items-center space-x-2">
+            <span>
              
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{%url 'my-orders'%}" style="font-weight: bold;color: black;" >my orders</a>
-              </li>
-             
-             
-            </ul>
-            
-               
-            <form id="sfrm" class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}" >
-            <input id="search" class="form-control mr-sm-2" type="search" name="search" placeholder="search products">
-            <button id="searchbtn" class="btn btn btn-warning my-2 my-sm-0" type="submit"> Search </button>
-            </form>
-              <form class="d-flex">
-              <div id="profileicon">
-                <a href="{%url 'profile-edit' request.user.id%}"> <i style="color: black;" class="fa-regular fa-2x fa-user"></i> </a>
-              </div>
-
-              <a href="{%url 'sign-out'%}" class="btn btn-danger" type="submit"><i class="fa-solid fa-list"></i> logout</a>
-            </form>
+              <i class="fa-brands fa-shopware"></i>
+            </span>
+            <span class="font-bold">ESTORE</span>
           </div>
+          <div class="hidden grow items-start lg:flex">
+            <ul class="ml-12 inline-flex space-x-8">
+              <li>
+                <a
+                  href="{%url 'home'%}"
+                  class="text-sm font-bold text-gray-800 hover:text-gray-900"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="{%url 'cart-summary'%}"
+                  class="text-sm font-semibold text-gray-800 hover:text-gray-900"
+                >
+                <i class="fa-solid fa-cart-shopping">cart</i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="{%url 'my-orders'%}"
+                  class="text-sm font-semibold text-gray-800 hover:text-black"
+                >
+                  My Orders
+                </a>
+              </li>
+            
+            </ul>
+          </div>
+          <div class="pb-2 w-1/2">
+           <form  class="mr-12 mb-2.5"method="GET" action="{% url 'search' %}" >
+             <input  class="mt-4  w-/4 rounded-md bg-white px-2 py-1.5 text-sm font-semibold text-gray-950 text-center shadow-sm hover:bg-green/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black placeholder-gray-900" type="search" name="search" placeholder="search products">
+             <button  class="bg-yellow-400 px-2 py-1 rounded-md" type="submit">search</button>
+           </form>
+          </div>
+          <div class="hidden lg:block "> 
+            <a 
+              href="{%url 'profile-edit' request.user.id%}"
+              
+              class="text-sm font-semibold text-gray-800 hover:text-gray-900 ml-14"
+            >
+            <i class="fa-solid fa-2x fa-user-large"></i>
+              
+          </a>
+          </div>
+          <div class="hidden lg:block pl-10">
+            <a 
+              href="{%url 'sign-out'%}"
+              
+              class="text-sm font-semibold text-black hover:text-gray-900"
+            >
+            <i class="fa-solid fa-list"></i> 
+              logout
+          </a>
+          </div>
+          
         </div>
-      </nav>
+      </div>
 
+      
+  
+
+    
 {%block 'mainblock'%}
 
 
 
 {%endblock%}
-      
 
 
 

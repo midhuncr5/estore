@@ -36,6 +36,10 @@
                   <td>{{o.phone}}</td>
                 </tr>
                 <tr>
+                  <td>email:</td>
+                  <td>{{o.email}}</td>
+                </tr>
+                <tr>
                   <td>address :</td>
                   <td>{{o.address}}</td>
 
@@ -43,6 +47,7 @@
 
                 
               </table>
+              
               {%for p in o.product_object.all%}
               <div class="col-md-4">
                 <img src="{{p.product_pic.url}}" class="img-fluid rounded-start" alt="...">
@@ -50,9 +55,14 @@
               <p class="card-text">{{p.title}}</p>
               <p class="card-text">{{p.brand_object}}</p>
               <p class="card-text">{{p.price}}</p>
-
-              <a href="{%url 'review-add' p.id %}" style="text-decoration-line: none;">Rate this product?</a>
+              
+           
+              
+              
+             
+              <a href="{%url 'review-add' p.id %}" style="text-decoration: underline; color: blue;">Rate this product?</a>
               {%endfor%}
+            
               
               <table>
                 <tr>
